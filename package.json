@@ -1,0 +1,83 @@
+{
+  "name": "chainhilt",
+  "author": "chainhilt",
+  "version": "0.0.4",
+  "mcpName": "ai.chainhilt/wallet",
+  "type": "module",
+  "description": "MCP wallet that executes ChainHilt actions (signatures and transactions).",
+  "keywords": [
+    "mcp",
+    "wallet",
+    "chainhilt",
+    "cli",
+    "x402",
+    "blockchain",
+    "crypto",
+    "agents",
+    "perp",
+    "defi",
+    "predict",
+    "prediction",
+    "trade",
+    "trading",
+    "bridge"
+  ],
+  "homepage": "https://chainhilt.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bancorprotocol/chainhilt-wallet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bancorprotocol/chainhilt-wallet/issues"
+  },
+  "license": "Apache-2.0",
+  "bin": {
+    "chainhilt": "dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --import tsx --test test/*.test.ts",
+    "build": "webpack",
+    "build:mcpb": "pnpm build && node tooling/mcpbBundle.mjs",
+    "prepack": "pnpm build",
+    "test:artifacts": "pnpm build && pnpm build:mcpb && node --import tsx tooling/smoke.mjs"
+  },
+  "devDependencies": {
+    "@hono/node-server": "2.1.5",
+    "@inquirer/select": "5.2.7",
+    "@modelcontextprotocol/client": "2.3.1",
+    "@modelcontextprotocol/server": "2.3.0",
+    "@types/node": "22",
+    "@types/qrcode": "1.5.6",
+    "commander": "15.0.0",
+    "esbuild-loader": "4.5.0",
+    "fflate": "0.8.3",
+    "hono": "4.13.13",
+    "json5": "2.2.3",
+    "jsonc-parser": "3.3.1",
+    "license-webpack-plugin": "4.0.2",
+    "qrcode": "1.5.4",
+    "smol-toml": "1.9.1",
+    "tsx": "4.20.6",
+    "typescript": "7.0.2",
+    "viem": "2.55.10",
+    "webpack": "^5.112.0",
+    "webpack-cli": "^7.2.3",
+    "yaml": "2.9.1",
+    "zod": "4.6.6"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "skills",
+    "README.md",
+    "NOTICE"
+  ],
+  "dependencies": {
+    "@napi-rs/keyring": "2.1.1"
+  }
+}

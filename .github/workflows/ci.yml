@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows covers the win32-only install and wallet paths; each OS also
+        # stores and reads a key in its real keychain.
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      CHAINHILT_KEYCHAIN_TEST: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v5
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends dbus dbus-x11 gnome-keyring
+      # Linux has a Secret Service only on a session bus with an unlocked keyring.
+      - if: runner.os == 'Linux'
+        run: >
+          dbus-run-session -- bash -c
+          'printf ci | gnome-keyring-daemon --unlock --components=secrets >/dev/null;
+          pnpm test'
+      - if: runner.os != 'Linux'
+        run: pnpm test
+      - run: pnpm test:artifacts

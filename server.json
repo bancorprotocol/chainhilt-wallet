@@ -1,0 +1,36 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.chainhilt/wallet",
+  "title": "ChainHilt Wallet",
+  "description": "Local wallet that signs and sends ChainHilt-verified actions",
+  "websiteUrl": "https://chainhilt.ai",
+  "repository": {
+    "url": "https://github.com/bancorprotocol/chainhilt-wallet",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://chainhilt.ai/logo.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "version": "0.0.4",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "chainhilt",
+      "version": "0.0.4",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ]
+    }
+  ]
+}

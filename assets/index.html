@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ChainHilt wallet</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <span class="wordmark">
+        <img
+          class="wordmark-mark"
+          src="/logo.svg"
+          alt=""
+          width="26"
+          height="26"
+        />chainhilt</span
+      >
+      <span class="session">private session in this machine</span>
+    </header>
+    <main>
+      <p class="eyebrow">YOUR AGENT'S SIGNING WALLET.</p>
+      <h1>Wallet setup</h1>
+      <p class="lede">
+        Import an EVM wallet or create a new one here. Keep private keys out of
+        your conversation with the agent.
+      </p>
+      <noscript>
+        <p class="status">
+          Wallet setup needs JavaScript. Open this link in your system browser
+          to continue.
+        </p>
+      </noscript>
+      <p id="message" class="status" role="status" aria-live="polite">
+        Loading private wallet setup…
+      </p>
+
+      <section id="setup" class="window" hidden>
+        <div class="window-bar">
+          <span class="window-dots" aria-hidden="true"
+            ><i></i><i></i><i></i
+          ></span>
+          <h2>choose a wallet</h2>
+        </div>
+        <div class="window-body">
+          <div class="panel">
+            <span class="panel-label">NEW</span>
+            <div class="panel-body">
+              <p>Generate a fresh key on this machine.</p>
+              <button id="create" type="button">Create a new wallet</button>
+            </div>
+          </div>
+          <form id="import" class="panel">
+            <span class="panel-label">IMPORT</span>
+            <div class="panel-body">
+              <label for="key">Paste an existing private key</label>
+              <input
+                id="key"
+                type="password"
+                autocomplete="off"
+                spellcheck="false"
+                required
+                placeholder="0x…"
+              />
+              <button type="submit" class="secondary">Import wallet</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="backup" class="window" hidden>
+        <div class="window-bar">
+          <span class="window-dots" aria-hidden="true"
+            ><i></i><i></i><i></i
+          ></span>
+          <h2>save your backup</h2>
+          <span class="window-status danger">shown once</span>
+        </div>
+        <div class="window-body">
+          <div class="panel">
+            <span class="panel-label danger">PRIVATE</span>
+            <div class="panel-body">
+              <p>
+                Save this key somewhere private. This page shows it once. Anyone
+                with it can use the wallet.
+              </p>
+              <textarea
+                id="backup-key"
+                readonly
+                aria-label="Private key backup"
+                spellcheck="false"
+              ></textarea>
+              <button id="saved" type="button">I saved my backup</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="receive" class="window" hidden>
+        <div class="window-bar">
+          <span class="window-dots" aria-hidden="true"
+            ><i></i><i></i><i></i
+          ></span>
+          <h2>receive assets</h2>
+          <span class="window-status">ready</span>
+        </div>
+        <div class="window-body">
+          <p class="note">
+            This wallet signs on-chain operations. Your x402 client, such as
+            AgentCash, has a separate payment balance.
+          </p>
+          <div class="fields">
+            <div>
+              <label for="chain">Network</label>
+              <select id="chain"></select>
+            </div>
+            <div>
+              <label for="asset">Asset</label>
+              <select id="asset"></select>
+            </div>
+          </div>
+          <p id="network" class="meta"></p>
+          <label for="address">Deposit address</label>
+          <div class="panel address">
+            <input id="address" readonly />
+            <button id="copy" type="button" class="secondary">Copy</button>
+          </div>
+          <p id="contract" class="meta"></p>
+          <img id="qr" alt="Deposit address QR code" width="200" height="200" />
+          <a id="open-wallet" hidden>
+            Open in wallet app <span aria-hidden="true">&rarr;</span>
+          </a>
+          <p class="note">
+            Confirm the network and asset in your sending wallet before
+            transferring.
+          </p>
+          <p id="gas" class="note"></p>
+          <div class="action-row">
+            <p id="balance" aria-live="polite">Balance not checked.</p>
+            <button id="refresh" type="button" class="secondary">
+              Refresh
+            </button>
+          </div>
+          <p class="note">
+            When ready, return to your agent. It can check your balance and
+            continue the operation.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

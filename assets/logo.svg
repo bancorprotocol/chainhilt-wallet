@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="crystal" x1="0" y1="-1" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#9ff0cf"/>
+      <stop offset="0.5" stop-color="#48d8a3"/>
+      <stop offset="1" stop-color="#1f8a64"/>
+    </linearGradient>
+    <linearGradient id="crystalLight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c8f7e2"/>
+      <stop offset="1" stop-color="#6fe3b8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.35" stop-color="#b8f5dc"/>
+      <stop offset="1" stop-color="#48d8a3"/>
+    </radialGradient>
+    <radialGradient id="aura" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#48d8a3" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#48d8a3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2c3833"/>
+      <stop offset="0.45" stop-color="#56685e"/>
+      <stop offset="1" stop-color="#222b27"/>
+    </linearGradient>
+    <radialGradient id="pommel" cx="0.38" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#e6dfc6"/>
+      <stop offset="1" stop-color="#8f8a72"/>
+    </radialGradient>
+
+    <!-- Face-on chain link: outline, shadow, metal, highlight -->
+    <g id="ring">
+      <rect x="-74" y="-132" width="148" height="264" rx="74" fill="none" stroke="#0b0f0e" stroke-width="58"/>
+      <rect x="-74" y="-132" width="148" height="264" rx="74" fill="none" stroke="#8f8a72" stroke-width="40"/>
+      <rect x="-78" y="-136" width="148" height="264" rx="74" fill="none" stroke="#e6dfc6" stroke-width="26"/>
+      <rect x="-80" y="-138" width="148" height="264" rx="74" fill="none" stroke="#fbf8ee" stroke-width="8" stroke-opacity="0.9"/>
+    </g>
+    <!-- Edge-on chain link -->
+    <g id="bar">
+      <rect x="-30" y="-150" width="60" height="300" rx="30" fill="#0b0f0e" stroke="#0b0f0e" stroke-width="18"/>
+      <rect x="-30" y="-150" width="60" height="300" rx="30" fill="#8f8a72"/>
+      <rect x="-30" y="-150" width="42" height="296" rx="21" fill="#e6dfc6"/>
+      <rect x="-20" y="-134" width="12" height="262" rx="5" fill="#fbf8ee" opacity="0.9"/>
+    </g>
+    <!-- Half of the crystal crossguard (right wing) -->
+    <g id="wing">
+      <polygon points="40,-52 322,-86 240,-14 254,32 172,10 70,46 40,52"
+               fill="url(#crystal)" stroke="#0b0f0e" stroke-width="16" stroke-linejoin="miter"/>
+      <polygon points="58,-40 290,-74 120,-14 62,-6" fill="url(#crystalLight)" opacity="0.85"/>
+      <polygon points="180,0 238,-8 246,22" fill="#c8f7e2" opacity="0.7"/>
+    </g>
+  </defs>
+
+  <g transform="translate(512 512) rotate(45) translate(0 200) scale(0.84)">
+    <!-- Handle -->
+    <rect x="-36" y="40" width="72" height="250" rx="8" fill="url(#grip)" stroke="#0b0f0e" stroke-width="16"/>
+    <rect x="-18" y="70" width="12" height="190" rx="6" fill="#77806f" opacity="0.6"/>
+    <circle cx="0" cy="320" r="54" fill="url(#pommel)" stroke="#0b0f0e" stroke-width="16"/>
+
+    <!-- Chain blade -->
+    <use href="#ring" transform="translate(0 -690)"/>
+    <use href="#ring" transform="translate(0 -205)"/>
+    <use href="#bar" transform="translate(0 -450)"/>
+
+    <!-- Crossguard -->
+    <use href="#wing"/>
+    <use href="#wing" transform="scale(-1 1)"/>
+
+    <!-- Glowing gem -->
+    <circle r="120" fill="url(#aura)"/>
+    <rect x="-62" y="-62" width="124" height="124" transform="rotate(45)" fill="#1f8a64" stroke="#0b0f0e" stroke-width="16"/>
+    <rect x="-48" y="-48" width="96" height="96" transform="rotate(45)" fill="url(#glow)"/>
+    <rect x="-22" y="-22" width="44" height="44" transform="rotate(45)" fill="#ffffff" stroke="#e9f7ee" stroke-width="6"/>
+  </g>
+</svg>

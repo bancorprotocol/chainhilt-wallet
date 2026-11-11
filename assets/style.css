@@ -1,0 +1,415 @@
+/* Tokens mirror app/page.css so the wallet page matches chainhilt.ai. */
+:root {
+  color-scheme: dark;
+  --page-bg: #0b0f0e;
+  --panel-bg: #111715;
+  --panel-strong: #070908;
+  --text: #e9e4cb;
+  --muted: #a8aaa2;
+  --subtle: #7e8278;
+  --border: #574f25;
+  --soft-border: #343c38;
+  --accent: #d7ff45;
+  --accent-alt: #48d8a3;
+  --danger: #ff604b;
+  --hover-bg: #1e2b25;
+  --window-muted: #9ba198;
+  --window-row: #18201d;
+  --window-border: #303933;
+  --mono: "Courier New", monospace;
+  --serif: Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-header,
+main {
+  width: min(620px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 68px;
+  border-bottom: 1px solid var(--accent-alt);
+  font-family: var(--mono);
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wordmark-mark {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+
+.session {
+  color: var(--subtle);
+  font-size: 12px;
+  text-align: right;
+}
+
+main {
+  padding: 56px 0 72px;
+}
+
+p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  margin-bottom: 16px;
+  color: var(--accent-alt);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-family: var(--serif);
+  font-size: clamp(40px, 10vw, 64px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.lede {
+  margin-bottom: 28px;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.status {
+  padding: 10px 12px;
+  border-left: 2px solid var(--accent);
+  background: var(--window-row);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+#message:empty {
+  display: none;
+}
+
+.window {
+  margin: 28px 6px 34px 0;
+  border: 1px solid var(--border);
+  background: var(--panel-strong);
+  box-shadow: 6px 6px 0 var(--accent-alt);
+}
+
+.window-bar {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 13px;
+  border-bottom: 1px solid var(--window-border);
+  color: var(--window-muted);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.window-bar h2 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.window-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.window-dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: var(--danger);
+}
+
+.window-dots i:nth-child(2) {
+  background: #e6d74e;
+}
+
+.window-dots i:nth-child(3) {
+  background: #4fc99b;
+}
+
+.window-status {
+  color: var(--accent);
+}
+
+.window-body {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.window-body > * {
+  margin: 0;
+}
+
+.panel {
+  display: flex;
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+}
+
+.panel-label {
+  display: grid;
+  min-width: 78px;
+  place-items: center;
+  border-right: 1px solid var(--window-border);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.panel-body {
+  display: grid;
+  flex: 1;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px 16px;
+}
+
+.panel-body > * {
+  margin: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.panel-body label {
+  margin: 0;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--soft-border);
+  border-radius: 0;
+  background: var(--panel-strong);
+  color: var(--text);
+  font: 14px var(--mono);
+  padding: 10px 12px;
+}
+
+textarea {
+  min-height: 84px;
+  resize: vertical;
+  overflow-wrap: anywhere;
+}
+
+input::placeholder {
+  color: var(--window-muted);
+}
+
+button {
+  justify-self: start;
+  min-height: 40px;
+  border: 1px solid var(--accent-alt);
+  border-radius: 0;
+  background: var(--accent-alt);
+  color: var(--page-bg);
+  cursor: pointer;
+  font: 700 13px var(--mono);
+  padding: 0 16px;
+}
+
+button.secondary {
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+button.secondary:hover {
+  background: var(--hover-bg);
+  filter: none;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+:is(button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent-alt);
+  outline-offset: 2px;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.meta {
+  color: var(--window-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.meta:empty,
+.note:empty {
+  display: none;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.address {
+  border-color: var(--soft-border);
+}
+
+.address input {
+  border: 0;
+  text-overflow: ellipsis;
+}
+
+.address button {
+  min-height: auto;
+  border-width: 0 0 0 1px;
+  border-color: var(--window-border);
+}
+
+/* The QR stays black on white so phone cameras can read it. */
+#qr {
+  display: block;
+  width: 200px;
+  height: 200px;
+  padding: 8px;
+  background: #fff;
+  box-shadow: 6px 6px 0 var(--accent-alt);
+}
+
+#open-wallet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 216px;
+  min-height: 40px;
+  margin-top: 6px;
+  border: 1px solid var(--accent-alt);
+  background: var(--accent-alt);
+  color: var(--page-bg);
+  font: 700 13px var(--mono);
+  text-decoration: none;
+}
+
+#open-wallet span {
+  font-size: 18px;
+}
+
+#open-wallet:hover {
+  filter: brightness(1.1);
+}
+
+#open-wallet:focus-visible {
+  outline: 2px solid var(--accent-alt);
+  outline-offset: 2px;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 10px;
+  border-left: 2px solid var(--accent);
+  background: var(--window-row);
+}
+
+.action-row p {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.action-row button {
+  flex: 0 0 auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px) {
+  main {
+    padding-top: 40px;
+  }
+
+  .session {
+    font-size: 11px;
+  }
+
+  .window-body {
+    padding: 14px;
+  }
+
+  .panel:not(.address) {
+    flex-direction: column;
+  }
+
+  .panel-label {
+    justify-content: start;
+    min-height: 32px;
+    padding: 0 16px;
+    border-right: 0;
+    border-bottom: 1px solid var(--window-border);
+  }
+
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .action-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

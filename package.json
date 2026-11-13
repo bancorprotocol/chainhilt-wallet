@@ -53,7 +53,7 @@
     "commander": "15.0.0",
     "esbuild-loader": "4.5.0",
     "fflate": "0.8.3",
-    "hono": "4.13.13",
+    "hono": "4.13.16",
     "json5": "2.2.3",
     "jsonc-parser": "3.3.1",
     "license-webpack-plugin": "4.0.2",

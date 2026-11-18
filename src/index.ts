@@ -56,6 +56,14 @@ export function createServer(migration?: Promise<string | undefined>) {
       inputSchema: z.object({
         chainId: z.number().int().positive().optional(),
       }),
+      // Each call opens a new session that can save a wallet but never
+      // replaces one; its receive page reads balances from public RPCs.
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
     },
     async ({ chainId }) => {
       const session = await startSetupSession({ chainId });
@@ -75,6 +83,13 @@ export function createServer(migration?: Promise<string | undefined>) {
     {
       description: "Show local MCP wallet addresses and missing configuration.",
       inputSchema: z.object({}),
+      // Clearing the one-time key notice is reporting state, not a change.
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
     },
     async () => {
       const {
@@ -133,6 +148,12 @@ export function createServer(migration?: Promise<string | undefined>) {
             message: "Either chainId or chainName is required",
           },
         ),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
     },
     async (input) => {
       const { chainId, chainName } = input;
@@ -181,6 +202,12 @@ export function createServer(migration?: Promise<string | undefined>) {
         tokenAddress: evmAddressSchema.optional(),
         chainId: z.number().int().positive().optional(),
       }),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
+      },
     },
     async ({ address, tokenAddress, chainId }) =>
       json(
@@ -201,6 +228,14 @@ export function createServer(migration?: Promise<string | undefined>) {
         method: z.enum(["GET", "POST", "PUT", "PATCH", "DELETE"]),
         body: z.record(z.string(), z.json()).optional(),
       }),
+      // Each call adds a fresh nonce to the ledger, which is what lets
+      // process_action execute. It signs locally; the agent sends the header.
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: false,
+      },
     },
     async (input) =>
       json(
@@ -239,6 +274,14 @@ export function createServer(migration?: Promise<string | undefined>) {
               : input.hashes !== undefined && input.nonce !== undefined,
           "Pass either nonce and hashes, or actions",
         ),
+      // Moves funds irreversibly. Not idempotent: a repeat is refused, not
+      // repeated, and hosts must never retry it automatically.
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
     },
     async ({ accountAddress, nonce, hashes, actions }) => {
       const result = await processAction(
